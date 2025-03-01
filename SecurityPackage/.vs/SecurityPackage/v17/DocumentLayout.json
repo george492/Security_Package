@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\data security\\project\\SecurityPackage\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{64AFBAE4-208F-4F5D-B9F4-CCA2E71F36E4}|SecurityLibrary\\SecurityLibrary.csproj|d:\\data security\\project\\securitypackage\\securitylibrary\\mainalgorithms\\hillcipher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64AFBAE4-208F-4F5D-B9F4-CCA2E71F36E4}|SecurityLibrary\\SecurityLibrary.csproj|solutionrelative:securitylibrary\\mainalgorithms\\hillcipher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HillCipher.cs",
+              "DocumentMoniker": "D:\\data security\\project\\SecurityPackage\\securitylibrary\\MainAlgorithms\\HillCipher.cs",
+              "RelativeDocumentMoniker": "securitylibrary\\MainAlgorithms\\HillCipher.cs",
+              "ToolTip": "D:\\data security\\project\\SecurityPackage\\securitylibrary\\MainAlgorithms\\HillCipher.cs",
+              "RelativeToolTip": "securitylibrary\\MainAlgorithms\\HillCipher.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAgwEcAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T14:16:02.936Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
