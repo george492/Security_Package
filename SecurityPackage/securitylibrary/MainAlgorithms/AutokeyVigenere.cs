@@ -26,7 +26,36 @@ namespace SecurityLibrary
 
 
             }
-            
+             char first_char = key[0];
+            string temp = "";
+            temp += first_char;
+            for (int i = 1; i < key.Length; i++)
+            {
+                if (key[i] == first_char)
+                {
+                    int temp_size = temp.Length;
+                    if (temp_size > (key.Length - i))
+                    {
+                        string sub = key.Substring(i, key.Length - i);
+                        if (temp.Contains(sub))
+                            return temp;
+                        else
+                            temp += key[i];
+                    }
+                    else
+                    {
+                        string sub = key.Substring(i, temp_size);
+                        if (sub == temp)
+                        {
+                            return temp;
+                        }
+                        else
+                            temp += key[i];
+                    }
+                }
+                else
+                    temp += key[i];
+            }
 
             return key;
            
