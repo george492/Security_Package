@@ -27,7 +27,7 @@ namespace SecurityLibrary
 
                 while (generatedKey.Length < plainText.Length)
                 {
-                    generatedKey += plainText[index++];
+                    generatedKey =generatedKey+ plainText[index++];
                 }
 
                 if (generatedKey == key)
@@ -52,7 +52,7 @@ namespace SecurityLibrary
                 plainText += (char)(diff + 'A');
                 if (key.Length < cipherText.Length)
                 {
-                    key += plainText[i];
+                    key =key+ plainText[i];
                 }
             }
 
@@ -65,23 +65,19 @@ namespace SecurityLibrary
         {
         key = key.ToUpper();
             plainText = plainText.ToUpper();
-            string cipherText = "";
-
-            // Extend the key properly
-            int keyIndex = 0;
+        string cipherText = "";
+        int keyIndex = 0;
             while (key.Length < plainText.Length)
             {
 
-                key += plainText[keyIndex++];
+                key =key + plainText[keyIndex++];
             }
-
-            // Encrypt using Vigenère formula
             for (int i = 0; i < plainText.Length; i++)
             {
                
                  int sum = ((int)(plainText[i]) - 65) + ((int)(key[i]) - 65);
                      sum %= 26;
-    cipherText += (char)(sum + 65);
+                 cipherText += (char)(sum + 65);
             }
 
             return cipherText;
