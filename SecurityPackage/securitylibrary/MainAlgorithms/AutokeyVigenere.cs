@@ -10,81 +10,53 @@ namespace SecurityLibrary
     {
         public string Analyse(string plainText, string cipherText)
         {
-        
-            plainText = plainText.ToUpper();
+        plainText = plainText.ToUpper();
             cipherText = cipherText.ToUpper();
             string key = "";
-            int length = plainText.Length;
-            for (int i = 0; i < length; i++)
+
+            for (int i = 0; i < plainText.Length; i++)
             {
-                int sum = ((int)(cipherText[i]) - 65) - ((int)(plainText[i]) - 65);
-                if (sum < 0)
-                    sum += 26;
-                else
-                    sum %= 26;
-                key += (char)(sum + 65);
-
-
+                int diff = ((cipherText[i] - 'A') - (plainText[i] - 'A') + 26) % 26;
+                key += (char)(diff + 'A');
             }
-             char first_char = key[0];
-            string temp = "";
-            temp += first_char;
-            for (int i = 1; i < key.Length; i++)
+            for (int length = 1; length <= key.Length; length++)
             {
-                if (key[i] == first_char)
+                string candidate = key.Substring(0, length);
+                string generatedKey = candidate;
+                int index = 0;
+
+                while (generatedKey.Length < plainText.Length)
                 {
-                    int temp_size = temp.Length;
-                    if (temp_size > (key.Length - i))
-                    {
-                        string sub = key.Substring(i, key.Length - i);
-                        if (temp.Contains(sub))
-                            return temp;
-                        else
-                            temp += key[i];
-                    }
-                    else
-                    {
-                        string sub = key.Substring(i, temp_size);
-                        if (sub == temp)
-                        {
-                            return temp;
-                        }
-                        else
-                            temp += key[i];
-                    }
+                    generatedKey += plainText[index++];
                 }
-                else
-                    temp += key[i];
+
+                if (generatedKey == key)
+                {
+                    return candidate; 
+                }
             }
 
             return key;
-           
             //throw new NotImplementedException();
         }
 
         public string Decrypt(string cipherText, string key)
         {
-        string plaintext = "";
-key = key.ToUpper();
-cipherText = cipherText.ToUpper();
-int length = cipherText.Length;
-           
-for (int i = 0; i < length; i++)
-{
-    int sum = ((int)(cipherText[i]) - 65) - ((int)(key[i]) - 65);
-    if (sum < 0)
-        sum += 26;
-    else
-        sum %= 26;
- 
-    plaintext += (char)(sum + 65);
+        string plainText = "";
+            key = key.ToUpper();
+            cipherText = cipherText.ToUpper();
 
-    if (key.Length < cipherText.Length){
-        key += plaintext[i];
-    }
+            for (int i = 0; i < cipherText.Length; i++)
+            {
+                int diff = ((cipherText[i] - 'A') - (key[i] - 'A') + 26) % 26;
+                plainText += (char)(diff + 'A');
+                if (key.Length < cipherText.Length)
+                {
+                    key += plainText[i];
+                }
+            }
 
-}
-return plaintext;
+            return plainText;
 
            // throw new NotImplementedException();
         }
@@ -92,22 +64,27 @@ return plaintext;
         public string Encrypt(string plainText, string key)
         {
         key = key.ToUpper();
-plainText = plainText.ToUpper();
-string cipherText = "";
-int length = plainText.Length;
-          
-for (int i = 0; i < length; i++)
-{
-    int sum = ((int)(plainText[i]) - 65) + ((int)(key[i]) - 65);
-    sum %= 26;
-    cipherText += (char)(sum + 65);
-    if (key.Length < plainText.Length)
-    {
-        key += plainText[i];
-    }
+            plainText = plainText.ToUpper();
+            string cipherText = "";
 
-}
-return cipherText;
+            // Extend the key properly
+            int keyIndex = 0;
+            while (key.Length < plainText.Length)
+            {
+
+                key += plainText[keyIndex++];
+            }
+
+            // Encrypt using Vigenère formula
+            for (int i = 0; i < plainText.Length; i++)
+            {
+               
+                 int sum = ((int)(plainText[i]) - 65) + ((int)(key[i]) - 65);
+                     sum %= 26;
+    cipherText += (char)(sum + 65);
+            }
+
+            return cipherText;
             //throw new NotImplementedException();
         }
     }
