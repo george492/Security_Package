@@ -141,7 +141,7 @@ namespace SecurityLibrary
             {
                 int sum = ((int)(plainText[i]) - 65) + ((int)(key[i]) - 65);
                 sum %= 26;
-                cipherText += (char)(sum+65);
+                cipherText += (char)(sum + 65);
 
 
             }
