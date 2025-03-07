@@ -16,8 +16,8 @@ namespace SecurityLibrary
 
             for (int i = 0; i < plainText.Length; i++)
             {
-                int diff = ((cipherText[i] - 26) - (plainText[i] - 26) + 26) % 26;
-                key += (char)(diff + 26);
+                int diff = ((cipherText[i] - 'A') - (plainText[i] - 'A') + 26) % 26;
+                key += (char)(diff + 'A');
             }
             for (int length = 1; length <= key.Length; length++)
             {
@@ -25,17 +25,20 @@ namespace SecurityLibrary
                 string generatedKey = candidate;
                 int index = 0;
 
-             while (generatedKey.Length < plainText.Length){
-                    generatedKey +=  plainText[index++];}
+                while (generatedKey.Length < plainText.Length)
+                {
+                    generatedKey = generatedKey + plainText[index++];
+                }
 
-             if (generatedKey == key) { 
-                
+                if (generatedKey == key)
+                {
                     return candidate;
                 }
             }
 
-            return key;
-        }
+                return key;
+            }
+        
 
         public string Decrypt(string cipherText, string key)
         {
@@ -45,8 +48,8 @@ namespace SecurityLibrary
 
             for (int i = 0; i < cipherText.Length; i++)
             {
-                int diff = ((cipherText[i] - 26) - (key[i] - 26) + 26) % 26;
-                plainText += (char)(diff + 26);
+                int diff = ((cipherText[i] - 'A') - (key[i] - 'A') + 26) % 26;
+                plainText += (char)(diff + 'A');
                 if (key.Length < cipherText.Length)
                 {
                     key +=  plainText[i];
